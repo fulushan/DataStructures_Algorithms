@@ -51,7 +51,7 @@ public class CircleLink {
      * @param data
      */
     public void delNode(String data){
-        Node p = head;
+        Node p = head.next;
         if(p.next==null){
             return;
         }
@@ -71,9 +71,10 @@ public class CircleLink {
     public void display(){
         Node p = head.next;
         while(p.next!=head.next){//判断不是尾节点
-            System.out.println(p.next.name);
+            System.out.println(p.name);
             p = p.next;
         }
+        System.out.println(p.name);
     }
 
     /**
@@ -101,19 +102,22 @@ public class CircleLink {
      * @param newData
      */
     public void insertNode(String nodeData,String newData){
-        Node p = head;
-        if(p.next==null){
-            return;
-        }
+        Node p = head.next;
+
         while(p.next!=head.next){//判断不是尾节点
-            if(p.next.name.equals(nodeData)){
+            if(p.name.equals(nodeData)){
                 Node insertNode = new Node(newData);
-                insertNode.next = p.next.next;
-                p.next.next = insertNode;
+                insertNode.next = p.next;
+                p.next = insertNode;
                 break;
             }else{
                 p = p.next;
             }
+        }
+        if(p.next==head.next){
+            Node insertNode = new Node(newData);
+            insertNode.next = p.next;
+            p.next = insertNode;
         }
     }
 
@@ -122,10 +126,9 @@ public class CircleLink {
      * @return
      */
     public int size(){
-        Node p = head;
-        int size = 0;
+        Node p = head.next;
+        int size = 1;
         while(p.next!=head.next){//判断不是尾节点
-            System.out.println(p.next.name);
             p = p.next;
             size++;
         }
@@ -140,12 +143,13 @@ public class CircleLink {
         link.addNode("李四");
         link.addNode("王麻子");
         link.display();
+        System.out.println("------ link.size()="+ link.size());
         System.out.println("----------------------");
-//        link.delNode("李四");
-//        link.display();
-//        System.out.println("----------------------");
-//        link.insertNode("张三","王老五");
-//        link.display();
+        link.delNode("李四");
+        link.display();
+        System.out.println("----------------------");
+        link.insertNode("王麻子","李四新");
+        link.display();
     }
 
 
