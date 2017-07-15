@@ -70,14 +70,17 @@ public class TwoWayLink {
             System.out.println(p.next.name);
             p = p.next;
         }
-    }
-    public void displayFromE2B(){
-        TwoWayNode p = head;
-        while (p.pre!=null){
-            System.out.println(p.pre.name);
-            p = p.next;
+
+
+        while (p.pre!=head){
+            System.out.println(p.name);
+            p = p.pre;
         }
+
+        System.out.println(p.name+"->>");
+
     }
+
 
 
     /**
@@ -150,7 +153,6 @@ public class TwoWayLink {
         TwoWayLink.addTwoWayNode("王麻子");
         TwoWayLink.displayFromB2E();
         System.out.println("----------------------");
-        TwoWayLink.displayFromE2B();
 //        TwoWayLink.delTwoWayNode("李四");
 //        TwoWayLink.display();
 //        System.out.println("----------------------");
